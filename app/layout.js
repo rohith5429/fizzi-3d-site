@@ -1,15 +1,15 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from 'next/font/local'
+import Header from "@/components/Header";
+import ViewCanvas from "@/components/ViewCanvas";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const alpino = localFont({
+  src: '../public/fonts/Alpino-Variable.woff',
+  display: 'swap',
+  weight: "100 900",
+  variable: "--font-alpino"
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -20,9 +20,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`$${alpino.variable} antialiased overflow-x-hidden bg-yellow-300`}
       >
-        {children}
+        <Header />
+        <main>
+          {children}
+          <ViewCanvas />
+        </main>
       </body>
     </html>
   );
